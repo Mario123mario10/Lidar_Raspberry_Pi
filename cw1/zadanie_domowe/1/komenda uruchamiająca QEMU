@@ -1,0 +1,1 @@
+./output/host/bin/qemu-system-aarch64 -M virt -cpu cortex-a57 -nographic -smp 4 -kernel output/images/Image -append "console=ttyAMA0"
