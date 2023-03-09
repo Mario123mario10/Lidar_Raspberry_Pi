@@ -8,3 +8,10 @@ Dla initramfs wyłączono wykonywanie `board/raspberrypi4-64/post-image.sh` któ
 - `BR2_ROOTFS_POST_IMAGE_SCRIPT=""` 
 
 Dla rootfs zwiększono rozmiar do 128M, tak aby kompilacja przebiegła pomyślnie.
+
+## Pierwsze uruchomienie
+
+```
+tio /dev/ttyUSB0
+```
+## Rootfs
