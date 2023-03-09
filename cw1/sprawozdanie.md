@@ -14,4 +14,17 @@ Dla rootfs zwiększono rozmiar do 128M, tak aby kompilacja przebiegła pomyślni
 ```
 tio /dev/ttyUSB0
 ```
+
+Powyższa komenda pozwoliła na podłączenie się do terminala UART.
+
 ## Rootfs
+
+## Kompilacja obrazu Linuxa poprzez system plików
+
+Najpierw uruchomiliśmy plik ze wstępną konfiguracją dla raspberrypi.
+
+```
+make raspberrypi4_64_defconfig
+```
+
+
