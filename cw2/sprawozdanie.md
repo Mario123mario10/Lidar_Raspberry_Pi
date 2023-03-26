@@ -4,9 +4,10 @@ author: Mateusz Okulus, Mariusz Pakulski
 ---
 
 # Cel ćwiczenia
-Celem ćwiczenia było zapoznanie się z systemem OpenWRT, obsługą interfejsów GPIO
-przez sysfs i sterowaniem układami za pomocą modulacji szerokości impulsów (PWM,
-Pulse-width Modulation).
+Celem laboratorium było wykonanie pięciu zadań, które dotyczyły sterowania
+układami za pomocą modulacji szerokości impulsów (PWM, Pulse-width Modulation).
+Należało się również zapoznać z systemem OpenWRT oraz obsługą interfejsów GPIO
+przez sysfs. 
 
 # Połączenie RaspberryPI
 
@@ -242,7 +243,8 @@ kolejnej oktawy. Każdą nutę gramy 1 sekundę.
 
 # Zadanie 5 - sterowanie serwomotorem
 
-Schemat jest dostępny w pliku `servo.fzz`.
+Schemat jest dostępny w pliku `servo.fzz`. W repozytorium znajdują się również
+zdjęcia podłączenia urządzeń oraz schematu w programie Fritzing.
 
 Do zadania piątego wybraliśmy serwomotor AR-3606HB. Steruje się nim za pomocą
 podania sygnału o częstotliwości 50Hz (okres 20ms). Współczynnik wypełnienia
@@ -288,7 +290,9 @@ Program 4 razy wysteruje serwomotor do pozycji 0, 0.5 i 1, po sekundę na każd�
 
 # Podsumowanie 
 
-Udało nam się poprawnie skonfigurować OpenWRT. Przećwiczyliśmy obsługę urządzeń
-przez interfejs GPIO za pomocą prostego wyjścia (migotanie LED), prostego
-wejścia (przycisk), a także za pomocą sygnału o zmiennej częstotliwości
-(buzzer) i zmiennym współczynniku wypełnienia (płynna zmiana LED, serwomotor).
+Na laboratorium udało się nam wykonać wszystkie wymagane zadania. Nauczyliśmy
+się sterować układami poprzez polecenia wykonywane w systemie OpenWRT. Po
+konfiguracji tego systemu przećwiczyliśmy obsługę urządzeń przez interfejs GPIO
+za pomocą prostego wyjścia (migotanie LED), prostego wejścia (przycisk), a
+także za pomocą sygnału o zmiennej częstotliwości (buzzer) i zmiennym
+współczynniku wypełnienia (płynna zmiana LED, serwomotor).
