@@ -3,7 +3,9 @@ ARCHIVE_NAME = openwrt-sdk-22.03.3-bcm27xx-bcm2711_gcc-11.2.0_musl.Linux-x86_64.
 DIR_NAME = openwrt-sdk-22.03.3-bcm27xx-bcm2711_gcc-11.2.0_musl.Linux-x86_64
 
 package: openwrt-sdk
-	make -C openwrt-sdk package/server/compile
+	cd openwrt-sdk && ./scripts/feeds update skps
+	cd openwrt-sdk && ./scripts/feeds install -p skps -a
+	make -j1 V=s -C openwrt-sdk package/server/compile
 	cp -f ./openwrt-sdk/bin/packages/aarch*/skps/server*.ipk -t .
 
 $(ARCHIVE_NAME):

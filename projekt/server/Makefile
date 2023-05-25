@@ -11,12 +11,14 @@ include $(INCLUDE_DIR)/package.mk
 include $(INCLUDE_DIR)/cmake.mk
 
 define Package/server
-    CATEGORY:=custom
-    TITLE:=Server
+	CATEGORY:=custom
+	TITLE:=Server
+	DEPENDS:=+libstdcpp
 endef
- 
+
 define Package/server/install
-    $(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_DIR) $(1)/usr/bin
+	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/server $(1)/usr/bin
 endef
- 
+
 $(eval $(call BuildPackage,server))
