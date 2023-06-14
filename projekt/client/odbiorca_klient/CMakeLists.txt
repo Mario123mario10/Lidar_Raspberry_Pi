@@ -21,7 +21,7 @@ add_executable(client
         main.cpp
         Client.cpp)
 
-target_compile_options(client PRIVATE -Wall -Wextra -pedantic -Werror)
+target_compile_options(client PRIVATE -Wall -Wextra -pedantic)
 # link python and numpy
 target_link_libraries(client
     PRIVATE
