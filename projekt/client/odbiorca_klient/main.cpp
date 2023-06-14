@@ -13,12 +13,11 @@
 
 namespace plt = matplotlibcpp;
 
-bool stop = false;
+sig_atomic_t stop = false;
 
 void stop_program(int sig)
 {
     stop = true;
-    sig = sig + 0;
 }
 
 int main(int argc, char *argv[]) {
