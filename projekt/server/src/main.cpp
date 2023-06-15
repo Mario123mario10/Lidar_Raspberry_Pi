@@ -40,7 +40,6 @@ int main() {
 
     Server server;
     Servo servo;
-    servo.enable();
     int angle = 0;
     servo.set_factor(angle / 360.0);
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
