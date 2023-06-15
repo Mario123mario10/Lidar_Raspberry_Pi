@@ -51,7 +51,7 @@ public:
         server_addr.sin_addr.s_addr = INADDR_ANY;
         server_addr.sin_port = htons(port);
         if (bind(socket_fd, reinterpret_cast<sockaddr *>(&server_addr), sizeof(server_addr)) < 0) {
-            throw "bind";
+            throw std::runtime_error("bind failed");
         }
     }
 
@@ -69,39 +69,38 @@ public:
         std::string msg = buffer.data();
         bool already_registered = clients.find(s) != clients.end();
         if (msg != "START" && msg != "STOP") {
-            std::cout << "Ignoring unknown message: " << msg << std::endl;
+            std::cerr << "Ignoring unknown message: " << msg << std::endl;
         } else {
             if (!already_registered && msg == "START") {
                 clients.insert(s);
-                std::cout << "Registered" << std::endl;
+                std::cerr << "Registered" << std::endl;
             } else if (already_registered && msg == "STOP") {
                 clients.erase(s);
-                std::cout << "Unregistered" << std::endl;
+                std::cerr << "Unregistered" << std::endl;
             }
         }
         return true;
     }
 
-    void send() {
-        size_t i = 0;
+    void send(const std::string &msg) {
         for (auto& client : clients) {
-            std::stringstream ss;
-            ss << "You are " << client;
-            std::string msg = ss.str();
             ssize_t n = sendto(socket_fd,
                    msg.c_str(),
                    msg.size(),
                    MSG_DONTWAIT,
                    reinterpret_cast<const sockaddr *>(&client.addr),
                    client.len);
-            if (n < 0)
-                perror("sendto");
-            i++;
+            if (n < 0) {
+                perror("Server send sendto");
+                std::cout << "Failed sending to " << client << ", ignoring\n";
+            }
         }
     }
+
     [[nodiscard]] size_t client_count() const {
         return clients.size();
     }
+
     ~Server() {
         close(socket_fd);
     }
