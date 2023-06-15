@@ -24,7 +24,6 @@ public:
     explicit Client(char* ip, int port = 9090) {
         socket_fd = socket(AF_INET, SOCK_DGRAM, 0);
         server_addr.sin_family = AF_INET;
-        server_addr.sin_addr.s_addr = INADDR_ANY;
         server_addr.sin_addr.s_addr = inet_addr(ip);
         server_addr.sin_port = htons(port);
 
