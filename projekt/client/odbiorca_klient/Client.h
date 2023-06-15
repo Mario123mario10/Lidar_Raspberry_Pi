@@ -14,18 +14,24 @@
 #include <chrono>
 #include <thread>
 
+struct ClientException {
+    std::string message;
+    ClientException(std::string message) : message(message) {}
+};
+
 class Client {
 public:
     explicit Client(char* ip, int port = 9090) {
         socket_fd = socket(AF_INET, SOCK_DGRAM, 0);
         server_addr.sin_family = AF_INET;
-        //server_addr.sin_addr.s_addr = INADDR_ANY;
+        server_addr.sin_addr.s_addr = INADDR_ANY;
         server_addr.sin_addr.s_addr = inet_addr(ip);
         server_addr.sin_port = htons(port);
 
         send("START");
-        std::cout << "Registered" << std::endl;
+        std::cerr << "Registered" << std::endl;
     }
+
     std::string read() {
         socklen_t len = sizeof(server_addr);
         ssize_t n = recvfrom(socket_fd,
@@ -35,14 +41,14 @@ public:
                             reinterpret_cast<sockaddr*>(&server_addr),
                             &len);
         if (n < 0)
-            throw "read";
+            throw ClientException("read");
         buffer[n] = '\0';
         return buffer.data();
     }
+
     ~Client() {
         send("STOP");
-        std::this_thread::sleep_for(std::chrono::seconds(2));
-        std::cout << "Unregistered" << std::endl;
+        std::cerr << "Unregistered" << std::endl;
         close(socket_fd);
     }
 private:
@@ -54,7 +60,7 @@ private:
                reinterpret_cast<sockaddr*>(&server_addr),
                sizeof(server_addr));
         if (n < 0)
-            throw "sendto";
+            throw ClientException("sendto");
     }
 
     int socket_fd;
