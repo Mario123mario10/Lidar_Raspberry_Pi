@@ -13,11 +13,11 @@ public:
     }
     void set_period(double ms) {
         period_ns = static_cast<long>(1e6 * ms);
-        recalculate();
+        recalculate_period();
     }
     void set_factor(double new_factor) {
         factor = new_factor;
-        recalculate();
+        recalculate_duty();
     }
     void set(bool enable) {
         enabled = enable;
@@ -39,8 +39,12 @@ public:
         write(base_path + "/unexport", channel);
     }
 private:
-    void recalculate() {
+    void recalculate_period() {
+        write(channel_path + "/duty_cycle", 0);
         write(channel_path + "/period", period_ns);
+        recalculate_duty();
+    }
+    void recalculate_duty() {
         double duty = min_cycle + (max_cycle - min_cycle) * factor;
         long duty_ns = period_ns * duty;
         write(channel_path + "/duty_cycle", duty_ns);
