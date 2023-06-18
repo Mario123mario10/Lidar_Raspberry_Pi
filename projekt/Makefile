@@ -1,6 +1,6 @@
-URL = https://downloads.openwrt.org/releases/22.03.3/targets/bcm27xx/bcm2711/openwrt-sdk-22.03.3-bcm27xx-bcm2711_gcc-11.2.0_musl.Linux-x86_64.tar.xz
-ARCHIVE_NAME = openwrt-sdk-22.03.3-bcm27xx-bcm2711_gcc-11.2.0_musl.Linux-x86_64.tar.xz
-DIR_NAME = openwrt-sdk-22.03.3-bcm27xx-bcm2711_gcc-11.2.0_musl.Linux-x86_64
+URL = https://downloads.openwrt.org/releases/21.02.1/targets/bcm27xx/bcm2711/openwrt-sdk-21.02.1-bcm27xx-bcm2711_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+ARCHIVE_NAME = openwrt-sdk-21.02.1-bcm27xx-bcm2711_gcc-8.4.0_musl.Linux-x86_64.tar.xz
+DIR_NAME = openwrt-sdk-21.02.1-bcm27xx-bcm2711_gcc-8.4.0_musl.Linux-x86_64
 
 package: openwrt-sdk
 	cd openwrt-sdk && ./scripts/feeds update skps
